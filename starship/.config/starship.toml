@@ -1,0 +1,155 @@
+add_newline = false
+command_timeout = 1000
+# format = """$os$username$hostname$kubernetes$directory$git_branch$git_status"""
+
+format = """$os$directory$kubernetes$git_branch$git_status$git_state$git_commit$docker_context$node$python$php$golang$rust
+$character 
+"""
+
+# format = '''
+# [╭╴](bold green)$os$username$hostname$kubernetes$directory$git_branch$git_status
+# [╰─>](bold green)($character)'''
+
+# format = """
+# [╭╴\\[$os$username$hostname\\]](bold green)$kubernetes$directory$git_branch$git_status$nodejs$python$c$php$golang$rust$java
+# [╰─>](bold green) """
+
+
+# [character]
+# success_symbol = '[›](bold green) '
+# error_symbol = '[✗](bold red) '
+
+[os]
+format = '[$symbol](bold red) '   
+disabled = false
+
+[os.symbols]
+Windows = ''
+Arch = '󰣇'
+Ubuntu = ''
+Macos = '󰀵'
+
+[username]
+style_user = 'yellow bold'
+style_root = 'black bold'
+format = '[$user]($style)'
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+format = '@[$hostname](bold yellow)'
+disabled = false
+
+[directory]
+truncation_length = 1
+truncation_symbol = '…/'
+home_symbol = '󰋜 ~'
+read_only_style = '197'
+read_only = '  '
+format = ' at [$path]($style)[$read_only]($read_only_style) '
+
+# Shows current git branch
+[git_branch]
+symbol = ' '
+format = 'via [$symbol$branch]($style)'
+# truncation_length = 4
+truncation_symbol = '…/'
+style = 'bold green'
+
+# Shows current git status
+[git_status]
+format = '[$all_status$ahead_behind]($style) '
+style = 'bold green'
+conflicted = '🏳'
+up_to_date = ''
+untracked = ' '
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
+stashed = ' '
+modified = ' '
+staged = '[++\($count\)](green)'
+renamed = '襁 '
+deleted = ' '
+
+
+[git_commit]
+commit_hash_length = 4
+tag_symbol = '🔖 '
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+cherry_pick = '[🍒 PICKING](bold red)'
+
+
+[c]
+symbol = ' '
+format = '\[[$symbol($version(-$name))]($style)\]'
+
+[cmd_duration]
+format = '\[[⏱ $duration]($style)\]'
+
+[docker_context]
+format = '\[[$symbol$context]($style)\]'
+symbol = '🐳 '	
+only_with_files =	true	
+detect_extensions =	["yaml", "yml"]
+detect_folders =	["docker"]
+style	= 'blue bold' 
+disabled = false
+
+[golang]
+symbol = ' '
+format = '\[[$symbol($version)]($style)\]'
+
+[gradle]
+format = '\[[$symbol($version)]($style)\]'
+
+[java]
+symbol = ' '
+format = '\[[$symbol($version)]($style)\]'
+
+[lua]
+format = '\[[$symbol($version)]($style)\]'
+
+[memory_usage]
+format = '\[$symbol[$ram( | $swap)]($style)\]'
+
+[nodejs]
+symbol = '󰎙 '
+format = '\[[$symbol($version)]($style)\]'
+
+[php]
+symbol = ' '
+format = '\[[$symbol($version)]($style)\]'
+
+[python]
+symbol = ' '
+format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
+
+[rust]
+symbol = ' '
+format = '\[[$symbol($version)]($style)\]'
+
+[kubernetes]
+# format = '[󱃾 $context\($namespace\)](bold purple) '
+format = '[󱃾 $context](bold purple) '
+disabled = false
+detect_folders = ["k8s", "kubernetes", ".kube"]
+
+
+[sudo]
+format = '\[[as $symbol]($style)\]'
+
+[terraform]
+format = '\[[$symbol$workspace]($style)\]'
+
+[time]
+format = '\[[$time]($style)\]'
+
+[vagrant]
+format = '\[[$symbol($version)]($style)\]'
+
+[aws]
+format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
