@@ -137,14 +137,19 @@ alias clion="/opt/clion-2023.3.2/bin/clion.sh"
 alias goland="/opt/GoLand/bin/goland.sh"
 alias datagrip="/opt/DataGrip/bin/datagrip.sh"
 
-export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/opt/zig
 export PATH=$PATH:/opt/obsidian
 
 # GO
 export GOPATH="$HOME/go"
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/usr/local/go/bin
+
+if [[ ":$PATH:" != *":$GOPATH/bin:"* ]]; then 
+    export PATH=$PATH:$GOPATH/bin
+fi
+
+if [[ ":$PATH:" != *":/usr/local/go/bin:"* ]]; then 
+    export PATH=$PATH:/usr/local/go/bin
+fi
 
 # FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
