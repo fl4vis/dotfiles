@@ -14,7 +14,7 @@
     diffFilter = delta --color-only --features=interactive
 
 [diff]
-    tool = phpstorm
+    tool = nvimdiff
 	show = delta
 
 [include]
@@ -27,24 +27,14 @@
     features = arctic-fox
     syntax-theme = Visual Studio Dark+
 
-
 [difftool]
   prompt = true
 
-[difftool "phpstorm"]
-    cmd = "/opt/PhpStorm/bin/phpstorm.sh diff $LOCAL $REMOTE >/dev/null 2>&1"
-
 [merge]
-    tool = phpstorm
-
-[mergetool "phpstorm"]
-    cmd = "/opt/PhpStorm-233.13135.108/bin/phpstorm.sh merge $LOCAL $BASE $REMOTE $MERGED"
-    trustExitCode = true
-    keepBackup = false
+    tool = nvimdiff
 
 [alias]
     lg = log --color --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
-
 
 [credential]
 	helper = store

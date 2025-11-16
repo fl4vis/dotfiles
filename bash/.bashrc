@@ -152,7 +152,7 @@ export FZF_ALT_C_OPTS="--walker-skip .git,node_modules,target,.idea"
 
 
 # Rust
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 # Change DPI (High resolution)
 echo "Xft.dpi: 120" | xrdb -merge
@@ -164,9 +164,9 @@ export GBM_BACKEND=nvidia-drm
 export __GLX_VENDOR_LIBRARY_NAME=nvidia
 
 # k8s
-alias k='kubectl'
-source <(kubectl completion bash)
-complete -o default -F __start_kubectl k
+# alias k='kubectl'
+# source <(kubectl completion bash)
+# complete -o default -F __start_kubectl k
 
 
 
