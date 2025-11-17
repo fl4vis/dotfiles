@@ -33,6 +33,13 @@
 [merge]
     tool = nvimdiff
 
+[mergetool]
+    keepBackup = false
+    keepTemporaries = false
+
+[mergetool "nvimdiff"]
+  cmd = nvim -d -c '4wincmd w | wincmd J' \"$LOCAL\" \"$BASE\" \"$REMOTE\" \"$MERGED\"
+
 [alias]
     lg = log --color --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
 
