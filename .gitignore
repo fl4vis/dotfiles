@@ -1,2 +1,5 @@
 tmux/.config/tmux/plugins/*/
 tmux/.config/tmux/plugins/*/
+btop/.config/btop/btop.log
+rofi/.config/rofi/mfput.log
+rofi/.config/rofi/.current_wallpaper
