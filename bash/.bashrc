@@ -147,12 +147,12 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/go/bin
 
 # FZF
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+eval "$(fzf --bash)"
 export FZF_ALT_C_OPTS="--walker-skip .git,node_modules,target,.idea"
 
 
 # Rust
-# . "$HOME/.cargo/env"
+. "$HOME/.cargo/env"
 
 # Change DPI (High resolution)
 echo "Xft.dpi: 120" | xrdb -merge
