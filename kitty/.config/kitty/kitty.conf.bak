@@ -1,10 +1,12 @@
 #include dracula.conf
 #include diff.conf
-# font_family     Fira Code SemiBold
-font_size 		13.0
-# bold_font       auto
-# italic_font      auto
-# bold_italic_font auto
+
+# BEGIN_KITTY_FONTS
+font_family      family='Iosevka Nerd Font' postscript_name=IosevkaNF
+bold_font        family='Iosevka Nerd Font' style=SemiBold features='+ss09 +ss01 +ss02 +ss03 +calt'
+italic_font      auto
+bold_italic_font auto
+# END_KITTY_FONTS
 
 background_opacity 1
 confirm_os_window_close 0
@@ -25,17 +27,19 @@ window_padding_width 4
 include current-theme.conf
 # END_KITTY_THEME
 
-# Add emoji support
-symbol_map U+1F300-U+1F6FF Noto Color Emoji
-symbol_map U+1F900-U+1F9FF Noto Color Emoji
+# Complete emoji support - covers all Unicode emoji ranges
+symbol_map U+1F000-U+1F02F Noto Color Emoji
+symbol_map U+1F0A0-U+1F0FF Noto Color Emoji
+symbol_map U+1F100-U+1F64F Noto Color Emoji
+symbol_map U+1F680-U+1F6FF Noto Color Emoji
+symbol_map U+1F910-U+1F96B Noto Color Emoji
+symbol_map U+1F980-U+1F9E0 Noto Color Emoji
+symbol_map U+1FA00-U+1FA6F Noto Color Emoji
+symbol_map U+1FA70-U+1FAFF Noto Color Emoji
 symbol_map U+2600-U+26FF Noto Color Emoji
 symbol_map U+2700-U+27BF Noto Color Emoji
-symbol_map U+1F680-U+1F6FF Noto Color Emoji
+symbol_map U+2300-U+23FF Noto Color Emoji
+symbol_map U+2B50-U+2B55 Noto Color Emoji
+symbol_map U+FE00-U+FE0F Noto Color Emoji
 
 
-# BEGIN_KITTY_FONTS
-font_family      family="FiraCode Nerd Font Mono"
-bold_font        auto
-italic_font      auto
-bold_italic_font auto
-# END_KITTY_FONTS
