@@ -23,7 +23,8 @@
 	"clock#5", 
 	"mpris", 
 	"tray", 
-	"custom/swaync"
+	"custom/swaync",
+    "network"
 	],
 	  
 "modules-center": ["hyprland/workspaces#pacman"], 

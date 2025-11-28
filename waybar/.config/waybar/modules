@@ -474,6 +474,7 @@
 	"max-length": 30,
 },
 "network": {
+    "interface": "wlan0",
 	"format": "{ifname}",
 	"format-wifi": "{icon}",
 	"format-ethernet": "󰌘",
@@ -487,7 +488,7 @@
 	"format-icons": [
 		"󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
 	],
-	"on-click-right": "kitty nmtui"
+    "on-click-right": "kitty --hold -e iwctl station wlan0 get-networks"
 },
 "network#speed": {
 	"interval": 1,
