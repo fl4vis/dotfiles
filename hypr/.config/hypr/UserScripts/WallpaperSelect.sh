@@ -1,20 +1,14 @@
 #!/bin/bash
 # /* ---- 💫 https://github.com/JaKooLit 💫 ---- */ 
 # This script for selecting wallpapers (SUPER W)
+# Updated to use hyprpaper instead of deprecated swww
 
 # WALLPAPERS PATH
 wallDIR="$HOME/Pictures/wallpapers"
 
-# variables
+# Variables
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 focused_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
-
-# swww transition config
-FPS=60
-TYPE="any"
-DURATION=2
-BEZIER=".43,1.19,1,.4"
-SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION"
 
 # Check if swaybg is running
 if pidof swaybg > /dev/null; then
@@ -28,7 +22,6 @@ RANDOM_PIC_NAME=". random"
 
 # Rofi command
 rofi_command="rofi -i -show -dmenu -config ~/.config/rofi/config-wallpaper.rasi"
-
 
 # Sorting Wallpapers
 menu() {
@@ -46,24 +39,36 @@ menu() {
   done
 }
 
-# initiate swww if not running
-swww query || swww-daemon --format xrgb
+# Function to set wallpaper using hyprpaper
+set_wallpaper() {
+  local wallpaper_path="$1"
+  
+  # Preload the wallpaper
+  hyprctl hyprpaper preload "${wallpaper_path}"
+  
+  # Set wallpaper for focused monitor
+  hyprctl hyprpaper wallpaper "${focused_monitor},${wallpaper_path}"
+  
+  # Optional: unload previous wallpapers to save memory
+  # hyprctl hyprpaper unload all
+}
 
 # Choice of wallpapers
 main() {
   choice=$(menu | ${rofi_command})
+  
   # No choice case
   if [[ -z $choice ]]; then
     exit 0
   fi
-
+  
   # Random choice case
   if [ "$choice" = "$RANDOM_PIC_NAME" ]; then
     RANDOM_PIC="${PICS[$((RANDOM % ${#PICS[@]}))]}"
-    swww img -o $focused_monitor "${RANDOM_PIC}" $SWWW_PARAMS
+    set_wallpaper "${RANDOM_PIC}"
     exit 0
   fi
-
+  
   # Find the index of the selected file
   pic_index=-1
   for i in "${!PICS[@]}"; do
@@ -73,9 +78,9 @@ main() {
       break
     fi
   done
-
+  
   if [[ $pic_index -ne -1 ]]; then
-    swww img -o $focused_monitor "${PICS[$pic_index]}" $SWWW_PARAMS
+    set_wallpaper "${PICS[$pic_index]}"
   else
     echo "Image not found."
     exit 1
@@ -90,7 +95,8 @@ fi
 
 main
 
-sleep 0.5
-${SCRIPTSDIR}/WallustSwww.sh
-sleep 0.2
-${SCRIPTSDIR}/Refresh.sh
+# sleep 0.5
+# ${SCRIPTSDIR}/WallustSwww.sh
+#
+# sleep 0.2
+# ${SCRIPTSDIR}/Refresh.sh

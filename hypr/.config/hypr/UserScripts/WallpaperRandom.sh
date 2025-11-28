@@ -19,10 +19,12 @@ BEZIER=".43,1.19,1,.4"
 SWWW_PARAMS="--transition-fps $FPS --transition-type $TYPE --transition-duration $DURATION --transition-bezier $BEZIER"
 
 
-swww query || swww-daemon --format xrgb && swww img -o $focused_monitor ${RANDOMPICS} $SWWW_PARAMS
+# swww query || swww-daemon --format xrgb && swww img -o $focused_monitor ${RANDOMPICS} $SWWW_PARAMS
+hyprctl hyprpaper preload "${RANDOMPICS}"
+hyprctl hyprpaper wallpaper "$focused_monitor,${RANDOMPICS}"
 
 
-${scriptsDir}/WallustSwww.sh
-sleep 1
-${scriptsDir}/Refresh.sh 
+# ${scriptsDir}/WallustSwww.sh
+# sleep 1
+# ${scriptsDir}/Refresh.sh 
 
