@@ -187,3 +187,14 @@ sonar() {
 	fi
 
 }
+
+# toggle delta side-by-side
+td() {
+    if [[ "$DELTA_FEATURES" == "+side-by-side" ]]; then
+        export DELTA_FEATURES="+"
+        echo "Side-by-side: OFF"
+    else
+        export DELTA_FEATURES="+side-by-side"
+        echo "Side-by-side: ON"
+    fi
+}
