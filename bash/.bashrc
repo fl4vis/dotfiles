@@ -176,20 +176,26 @@ complete -o default -F __start_kubectl k
 
 
 sonar() {
-    target_dir="$(~/Documents/Programming/sonar/sonar "$@" 2>/dev/null)"
-
+    local selection_file="/tmp/sonar_selection"
+    
+    # Run interactively TUI 
+    ~/Documents/Programming/sonar/sonar "$@"
     exit_code=$?
-
-	if [[ -n "$target_dir" && "$exit_code" -eq 100 ]] ; then
-		cd "$target_dir"  || echo "Failed to cd into $target_dir"
-    else 
-       echo "$target_dir"
-	fi
+    
+    # Check if selection was made
+    if [[ -f "$selection_file" && "$exit_code" -eq 0 ]]; then
+        target_dir="$(cat "$selection_file")"
+        rm -f "$selection_file"
+        
+        if [[ -n "$target_dir" ]]; then
+            cd "$target_dir" || echo "Failed to cd into $target_dir"
+        fi
+    fi
 
 }
 
 # toggle delta side-by-side
-td() {
+dt() {
     if [[ "$DELTA_FEATURES" == "+side-by-side" ]]; then
         export DELTA_FEATURES="+"
         echo "Side-by-side: OFF"
@@ -198,3 +204,37 @@ td() {
         echo "Side-by-side: ON"
     fi
 }
+
+# Colorize dig output
+dig-color () {
+  OUTPUT=$(\dig $*)
+  MAX_HOST_LENGTH=$(echo "$OUTPUT" | awk 'NF && $0 !~ /^;/ { for(i=1;i<=NF;i++) if(length($i)>max) max=length($i) } END { print max }')
+  # print the raw output of dig in dim text
+  echo -e "\033[2m$OUTPUT\033[0m\n"
+  echo "$OUTPUT" | gawk '
+    BEGIN { 
+      uniqueHosts = 0 
+    } 
+    # only look at lines that do not start with a ";"
+    NF && $0 !~ /^;/ { 
+      # extract all the parts of the output we care about -- host, ttl, type, etc.  
+      match($0, /^(\S+)\s+([0-9]+)\s+(\S+)\s(\S+)\s(.*)$/, a);
+      
+      # assign a color code to hosts the first time we encounter them, starting at color code 91
+      if (a[1] in hosts == 0) 
+        hosts[a[1]] = (91 + ++uniqueHosts);
+      
+      if (a[5] in hosts == 0)
+        hosts[a[5]] = (91 + ++uniqueHosts);
+      
+      # print colorized output for each DNS record
+      printf "\033[1;%sm%-'"$MAX_HOST_LENGTH"'s\033[0m %5s %s %-5s \033[1;%sm%s\033[0m\n",
+        hosts[a[1]], a[1], a[2], a[3], a[4], hosts[a[5]], a[5] 
+    }
+  '
+}
+
+alias dig='dig-color'
+
+export EDITOR=nvim
+
