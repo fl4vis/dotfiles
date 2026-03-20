@@ -170,21 +170,32 @@ export __GLX_VENDOR_LIBRARY_NAME=nvidia
 
 # k8s
 alias k='kubectl'
+alias kubectl=kubecolor
 source <(kubectl completion bash)
 complete -o default -F __start_kubectl k
+complete -o default -F __start_kubectl kubecolor
+
+export KUBECOLOR_PRESET="dark"
+
 
 
 
 sonar() {
-    target_dir="$(~/Documents/Programming/sonar/sonar "$@" 2>/dev/null)"
-
+    local selection_file="/tmp/sonar_selection"
+    
+    # Run interactively TUI 
+    ~/Documents/Programming/sonar/sonar "$@"
     exit_code=$?
-
-	if [[ -n "$target_dir" && "$exit_code" -eq 100 ]] ; then
-		cd "$target_dir"  || echo "Failed to cd into $target_dir"
-    else 
-       echo "$target_dir"
-	fi
+    
+    # Check if selection was made
+    if [[ -f "$selection_file" && "$exit_code" -eq 0 ]]; then
+        target_dir="$(cat "$selection_file")"
+        rm -f "$selection_file"
+        
+        if [[ -n "$target_dir" ]]; then
+            cd "$target_dir" || echo "Failed to cd into $target_dir"
+        fi
+    fi
 
 }
 
