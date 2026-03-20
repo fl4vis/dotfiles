@@ -21,7 +21,7 @@
     path = /home/fl4vis/.delta-themes.gitconfig
 
 [delta]
-    line-numbers = true
+    line-numbers = false
     navigate = true
     dark = true
     features = arctic-fox
