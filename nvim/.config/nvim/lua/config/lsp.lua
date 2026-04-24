@@ -13,6 +13,8 @@ vim.lsp.enable({
     "sqls",
     "pyright",
     "rust_analyzer",
+    "bashls",
+    "yamlls",
 })
 
 -- Keybindings
