@@ -2,19 +2,20 @@
 -- checkhealt vim.lsp , lsp
 
 vim.lsp.enable({
-	"lua_ls",
-	"intelephense",
-	"ts_ls",
-	"gopls",
-	"tailwindcss",
-	"html",
-	"emmet",
-	"clangd",
-	"sqls",
-	"pyright",
-	-- "rust_analyzer",
+    "lua_ls",
+    "intelephense",
+    "ts_ls",
+    "gopls",
+    "tailwindcss",
+    "html",
+    "emmet",
+    "clangd",
+    "sqls",
+    "pyright",
+    "rust_analyzer",
+    "bashls",
+    "yamlls",
 	"terraformls",
-  "yamlls
 })
 
 -- Keybindings
