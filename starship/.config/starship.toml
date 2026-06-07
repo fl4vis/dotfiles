@@ -2,7 +2,7 @@ add_newline = false
 command_timeout = 1000
 # format = """$os$username$hostname$kubernetes$directory$git_branch$git_status"""
 
-format = """$os$directory$kubernetes$git_branch$git_status$git_state$git_commit$docker_context$node$python$php$golang$rust
+format = """$os$directory$kubernetes$git_branch$git_status$git_state$git_commit$docker_context$nodejs$python$php$golang$rust
 $character 
 """
 
@@ -26,6 +26,7 @@ disabled = false
 [os.symbols]
 Windows = ''
 Arch = '󰣇'
+CachyOS = '󰣇'
 Ubuntu = ''
 Macos = '󰀵'
 
