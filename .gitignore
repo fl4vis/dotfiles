@@ -3,3 +3,4 @@ tmux/.config/tmux/plugins/*/
 btop/.config/btop/btop.log
 rofi/.config/rofi/mfput.log
 rofi/.config/rofi/.current_wallpaper
+tmux/.config/tmux/tpm/

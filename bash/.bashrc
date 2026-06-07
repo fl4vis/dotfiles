@@ -112,6 +112,8 @@ fi
 
 # My Config
 
+# fastfetch
+fastfetch
 
 # bat
 alias cat="bat"
@@ -157,10 +159,10 @@ export FZF_ALT_C_OPTS="--walker-skip .git,node_modules,target,.idea"
 
 
 # Rust
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 # Change DPI (High resolution)
-echo "Xft.dpi: 120" | xrdb -merge
+# echo "Xft.dpi: 120" | xrdb -merge
 
 #Hyprland
 export LIBVA_DRIVER_NAME=nvidia
@@ -243,3 +245,5 @@ alias dig='dig-color'
 
 export EDITOR=nvim
 
+
+complete -C /usr/local/bin/terraform terraform
