@@ -14,6 +14,7 @@ vim.lsp.enable({
 	"pyright",
 	-- "rust_analyzer",
 	"terraformls",
+  "yamlls
 })
 
 -- Keybindings
