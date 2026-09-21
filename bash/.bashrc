@@ -113,21 +113,13 @@ fi
 # My Config
 
 alias fastfetch='~/.config/fastfetch/random-logo-fastfetch.sh'
-fastfetch
+# fastfetch
 
 # bat
 alias cat="bat"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT='-c'
 alias ls="lsd --group-dirs=first"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 eval "$(starship init bash)"
 ___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"
@@ -149,16 +141,14 @@ if [[ ":$PATH:" != *":$GOPATH/bin:"* ]]; then
     export PATH=$PATH:$GOPATH/bin
 fi
 
-if [[ ":$PATH:" != *":/usr/local/go/bin:"* ]]; then
-    export PATH=$PATH:/usr/local/go/bin
-fi
-
 # FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_ALT_C_OPTS="--walker-skip .git,node_modules,target,.idea"
 
 # Rust
-# . "$HOME/.cargo/env"
+if [[ ":$PATH:" != *":$HOME/.cargo/bin:"* ]]; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
 
 # Change DPI (High resolution)
 # echo "Xft.dpi: 120" | xrdb -merge
@@ -242,3 +232,5 @@ alias dig='dig-color'
 export EDITOR=nvim
 
 complete -C /usr/local/bin/terraform terraform
+
+eval "$(~/.local/bin/mise activate bash)"
