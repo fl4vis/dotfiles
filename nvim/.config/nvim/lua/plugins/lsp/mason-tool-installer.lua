@@ -18,6 +18,8 @@ return {
 					-- debug
 					"java-debug-adapter",
 					"java-test",
+
+					"vscode-spring-boot-tools",
 				},
 			})
 		end,

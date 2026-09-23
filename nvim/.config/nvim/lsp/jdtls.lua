@@ -78,6 +78,13 @@ local function get_bundles()
 		vim.fn.glob(mason .. "/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar", true),
 	}
 	vim.list_extend(bundles, vim.split(vim.fn.glob(mason .. "/java-test/extension/server/*.jar", true), "\n"))
+
+	-- spring-boot.nvim jdtls extension jars
+	local ok, spring_boot = pcall(require, "spring_boot")
+	if ok then
+		vim.list_extend(bundles, spring_boot.java_extensions())
+	end
+
 	return vim.tbl_filter(function(b)
 		return b ~= ""
 	end, bundles)

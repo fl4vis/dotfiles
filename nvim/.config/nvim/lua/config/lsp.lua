@@ -34,7 +34,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		vim.keymap.set("n", "<leader>li", vim.lsp.buf.type_definition, { desc = "Show Type Definition" })
 
-		-- vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "Builint LSP formmatter" })
 		vim.keymap.set("n", "<leader>lf", function()
 			local conform = require("conform")
 

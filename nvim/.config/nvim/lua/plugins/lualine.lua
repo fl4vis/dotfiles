@@ -95,7 +95,7 @@ return {
 							inactive = "lualine_c_normal",
 						},
 
-						max_length = vim.o.columns,
+						max_length = vim.api.nvim_win_get_width(0),
 					},
 				}, -- Tabline with tabs component
 			},

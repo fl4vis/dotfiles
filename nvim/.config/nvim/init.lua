@@ -10,6 +10,7 @@ require("lazy").setup({
 		{ import = "plugins.navigation" },
 		{ import = "plugins.lsp" },
 		{ import = "plugins.debug" },
+		{ import = "plugins.java" },
 	},
 })
 

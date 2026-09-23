@@ -26,6 +26,7 @@ return {
 			"go",
 			"javascript",
 			"typescript",
+			"tsx",
 			"vue",
 			"html",
 			"php",
