@@ -70,5 +70,21 @@ vim.keymap.set("n", "<leader>t>", ":tabmove +1<CR>", { desc = "Move Tab +1" })
 
 vim.keymap.set("n", "<A-k>", "<C-W>+", { desc = "Resize +" })
 
+-- Emacs
+vim.keymap.set("i", "<A-b>", "<C-o>b")
+vim.keymap.set("i", "<A-f>", "<C-o>w")
+
+vim.keymap.set("i", "<C-b>", "<C-g>U<Left>")
+vim.keymap.set("i", "<C-f>", "<C-g>U<Right>")
+
+vim.keymap.set("i", "<A-d>", "<C-o>dw")
+vim.keymap.set("i", "<C-d>", "<Del>")
+
+vim.keymap.set("i", "<C-a>", "<C-o>^")
+vim.keymap.set("i", "<C-e>", "<C-o>$")
+
+vim.keymap.set("i", "<C-u>", "<C-g>u<C-u>")
+vim.keymap.set("i", "<C-k>", "<C-o>D")
+
 -- Rounded Hover Signature
 vim.o.winborder = "rounded"
