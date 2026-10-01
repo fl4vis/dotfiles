@@ -27,12 +27,9 @@ vim.lsp.enable({
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function()
 		vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = "Code Actions" })
-		vim.keymap.set("n", "<leader>ls", vim.lsp.buf.document_symbol, { desc = "Document Symbol" })
 
-		vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Show Diagnostic Float" })
-		vim.keymap.set("n", "<leader>lk", vim.diagnostic.setqflist, { desc = "Show Diagnostic List" })
-
-		vim.keymap.set("n", "<leader>li", vim.lsp.buf.type_definition, { desc = "Show Type Definition" })
+		vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Diagnostic Float" })
+		vim.keymap.set("n", "<leader>lk", vim.diagnostic.setqflist, { desc = "Diagnostic List" })
 
 		vim.keymap.set("n", "<leader>lf", function()
 			local conform = require("conform")
@@ -44,7 +41,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			})
 		end, { desc = "LSP Formmatter" })
 
-		vim.keymap.set("n", "<leader>lt", function()
+		vim.keymap.set("n", "<leader>lz", function()
 			for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
 				client.server_capabilities.documentFormattingProvider = false
 			end

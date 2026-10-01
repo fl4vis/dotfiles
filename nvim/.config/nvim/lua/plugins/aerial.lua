@@ -41,10 +41,10 @@ return {
 			-- optionally use on_attach to set keymaps when aerial has attached to a buffer
 			on_attach = function(bufnr)
 				-- Jump forwards/backwards with '{' and '}'
-				-- vim.keymap.set("n", "<leader>lS", "<cmd>AerialOpen<CR>", { buffer = bufnr, desc = "Symbols Aerial" })
-				vim.keymap.set("n", "<leader>lS", function()
+				vim.keymap.set("n", "<leader>ln", "<cmd>AerialOpen<CR>", { buffer = bufnr, desc = "Symbols Aerial" })
+				vim.keymap.set("n", "<leader>lN", function()
 					require("telescope").extensions.aerial.aerial()
-				end, { desc = "Symbols Aerial" })
+				end, { desc = "Document Symbols Aerial" })
 			end,
 		})
 	end,
