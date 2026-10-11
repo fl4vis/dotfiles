@@ -1,77 +1,3 @@
-local icons = {
-	Namespace = " ",
-	Package = " ",
-	String = "󰀬 ",
-	Number = "󰎠 ",
-	Boolean = "◩ ",
-	Array = "󰅪 ",
-	Object = "󰅩 ",
-	Key = "󰌋 ",
-	Null = "󰟢 ",
-	Text = "󰉿 ",
-	Method = "󰊕 ",
-	Function = "󰊕 ",
-	Constructor = " ",
-	Field = "󰜢 ",
-	Variable = "󰀫 ",
-	Class = " ",
-	Interface = " ",
-	Module = "󰕳 ",
-	Property = "󰜢 ",
-	Unit = "󰑭 ",
-	Value = "󰎠 ",
-	Enum = " ",
-	Keyword = "󰌋 ",
-	Snippet = " ",
-	Color = "󰏘 ",
-	File = "󰈙 ",
-	Reference = "󰈇 ",
-	Folder = "󰉋 ",
-	EnumMember = " ",
-	Constant = "󰏿 ",
-	Struct = "󰙅 ",
-	Event = " ",
-	Operator = "󰆕 ",
-	TypeParameter = "",
-}
-
----@param picker TelescopeSymbolPicker
----@param opts? table
-local function lsp_icons(picker, opts)
-	local make_entry = require("telescope.make_entry")
-
-	opts = opts or {}
-
-	local gen = make_entry.gen_from_lsp_symbols(opts)
-
-	opts.entry_maker = function(entry)
-		local e = gen(entry)
-		if not e then
-			return nil
-		end
-
-		local original_display = e.display
-
-		e.display = function(et)
-			local display, highlights
-
-			if type(original_display) == "function" then
-				display, highlights = original_display(et)
-			else
-				display = original_display
-			end
-
-			local icon = icons[entry.kind] or "?"
-
-			return icon .. " " .. tostring(display), highlights
-		end
-
-		return e
-	end
-
-	picker(opts)
-end
-
 return {
 	{
 		"nvim-telescope/telescope.nvim",
@@ -84,6 +10,7 @@ return {
 		config = function()
 			local telescope = require("telescope")
 			local builtin = require("telescope.builtin")
+			local custom_telescope = require("config.custom-telescope")
 
 			telescope.setup({
 				defaults = {
@@ -130,6 +57,7 @@ return {
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live Grep" })
 			vim.keymap.set("n", "<leader>fr", builtin.registers, { desc = "Registers" })
 			vim.keymap.set("n", "<leader>fj", builtin.jumplist, { desc = "Jump List" })
+			vim.keymap.set("n", "<leader>fb", custom_telescope.buffers, { desc = "Buffers" })
 
 			-----------
 			-- LSP
@@ -152,7 +80,7 @@ return {
 
 			-- Use lsp icons
 			vim.keymap.set("n", "<leader>ls", function()
-				lsp_icons(builtin.lsp_document_symbols, {
+				custom_telescope.lsp_icons(builtin.lsp_document_symbols, {
 					path_display = { "hidden" },
 					on_complete = {
 						function(picker)
@@ -165,11 +93,11 @@ return {
 			end, { desc = "Document Symbols" })
 
 			vim.keymap.set("n", "<leader>ly", function()
-				lsp_icons(builtin.lsp_workspace_symbols)
+				custom_telescope.lsp_icons(builtin.lsp_workspace_symbols)
 			end, { desc = "Workspace Symbols" })
 
 			vim.keymap.set("n", "<leader>lY", function()
-				lsp_icons(builtin.lsp_dynamic_workspace_symbols)
+				custom_telescope.lsp_icons(builtin.lsp_dynamic_workspace_symbols)
 			end, { desc = "Dynamic Workspace Symbols" })
 
 			-- ASCII art finder
