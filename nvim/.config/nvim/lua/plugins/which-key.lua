@@ -7,12 +7,13 @@ return {
 		-- refer to the configuration section below
 		spec = {
 			{ "<leader>f", group = "Telescope" },
-			{ "<leader>l", group = "LSP", icon = "" },
-			{ "<leader>a", group = "Harpoon", icon = "" },
-			{ "<leader>z", group = "UFO", icon = "󱃄" },
-			{ "<leader>d", group = "Debug", icon = "" },
-			{ "<leader>g", group = "Git", icon = "" },
-			{ "<leader>t", group = "Tabs", icon = "󱝃" },
+			{ "<leader>l", group = "LSP", icon = " " },
+			{ "<leader>a", group = "Harpoon", icon = " " },
+			{ "<leader>z", group = "UFO", icon = "󱃄 " },
+			{ "<leader>d", group = "Debug", icon = " " },
+			{ "<leader>g", group = "Git", icon = " " },
+			{ "<leader>t", group = "Tabs", icon = "󱝃 " },
+			{ "<leader>m", group = "Markdown", icon = "󰍔 " },
 		},
 	},
 	keys = {
