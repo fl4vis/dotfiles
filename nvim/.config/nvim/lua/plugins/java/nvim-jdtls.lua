@@ -15,12 +15,12 @@ return {
 
 			-- Find the project root.
 			local root_dir = jdtls.setup.find_root({
-				".git",
 				"mvnw",
 				"gradlew",
 				"pom.xml",
 				"build.gradle",
 				"build.gradle.kts",
+				".git",
 			})
 
 			if not root_dir then
@@ -129,7 +129,21 @@ return {
 				},
 			}
 
-			jdtls.start_or_attach(config)
+			local function attach_jdtls()
+				jdtls.start_or_attach(config)
+			end
+
+			-- Lazy.nvim runs config() only once when the plugin loads.
+			-- Register a FileType autocmd to attach JDTLS to every Java buffer.
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "java",
+				callback = attach_jdtls,
+			})
+
+			-- Attach to the first Java buffer too.
+			if vim.bo.filetype == "java" then
+				attach_jdtls()
+			end
 		end,
 	},
 }

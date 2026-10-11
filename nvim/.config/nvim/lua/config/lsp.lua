@@ -19,7 +19,6 @@ vim.lsp.enable({
 	"yamlls",
 	"terraformls",
 	"cssls",
-	"jdtls",
 	"lemminx",
 })
 
