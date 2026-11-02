@@ -14,6 +14,7 @@ return {
 					"black",
 					"goimports",
 					"blade-formatter",
+					"pgformatter",
 					-- linters
 					-- debug
 					"java-debug-adapter",

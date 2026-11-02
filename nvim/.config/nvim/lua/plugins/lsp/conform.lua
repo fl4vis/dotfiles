@@ -20,6 +20,7 @@ return {
 				go = { "goimports", "gofmt" },
 				php = { "easy-coding-standard" },
 				blade = { "blade-formatter" },
+				sql = { "pg_format " },
 			},
 			format_on_save = {
 				-- If formatter isn't available, fallback to lsp
